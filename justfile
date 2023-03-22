@@ -11,8 +11,11 @@ export JUST_LOG := log
 
 ### run playbook
 configure HOST *TAGS:
-  ansible-playbook -b playbooks/configure.yaml --limit {{HOST}} {{TAGS}}
+  ansible-playbook -u root -b playbooks/configure.yaml --limit {{HOST}} {{TAGS}}
 
+### run playbook
+deploy HOST *TAGS:
+  ansible-playbook -b playbooks/deploy.yaml --limit {{HOST}} {{TAGS}}
 
 
 ## repo stuff
