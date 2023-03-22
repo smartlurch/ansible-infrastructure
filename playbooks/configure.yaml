@@ -16,4 +16,9 @@
           state: present
           pull: true
           project_src: "/root"
-
+      - name: create docker-user
+        ansible.builtin.user:
+          name: docker-user
+          shell: /bin/bash
+          groups: docker,sudo
+          append: yes
