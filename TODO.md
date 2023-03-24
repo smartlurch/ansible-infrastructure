@@ -1,4 +1,3 @@
-2. add pass for docker user
 3. change creation location for docker-compose file
 4. change source location for running docker-compose
 5. make docker-compsoe up a handler

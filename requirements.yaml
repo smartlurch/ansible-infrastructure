@@ -3,4 +3,5 @@ roles:
 - src: ironicbadger.bash_aliases
 - src: geerlingguy.docker
 - src: geerlingguy.pip
+- src: geerlingguy.ntp
 - src: grog.package
