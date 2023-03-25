@@ -1,5 +1,5 @@
 ---
-  - hosts: secretsvid
+  - hosts: servers
     vars_files:
       - '../vars/vault.yaml'
     roles:
@@ -16,10 +16,8 @@
           append: yes
           password: "{{ 'password' | password_hash('sha512') }}"
           update_password: on_create
-        register: docker-user
       - name: force docker-user to change password
         shell: chage -d 0 docker-user
-        when: docker-user.changed
       - name: add docker-user ssh public key
         ansible.posix.authorized_key:
           user: docker-user

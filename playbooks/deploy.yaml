@@ -1,5 +1,5 @@
 ---
-  - hosts: secretsvid
+  - hosts: servers 
     gather_facts: no
     roles:
       - role: ironicbadger.bash_aliases
