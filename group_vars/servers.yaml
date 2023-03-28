@@ -26,20 +26,7 @@ bash_aliases:
   - { alias: "zsnap", command: "zfs list -t snapshot" }
   - { alias: "dfclean", command: "df -h -x tmpfs -t fuse.mergerfs -t xfs -t ext4 -t zfs"}
 
-# ironicbadger.docker_compose_generator
-appdata_path: /opt/appdata
-containers:
-  - service_name: npm
-    active: true
-    image: 'jc21/nginx-proxy-manager:latest'
-    restart: unless-stopped
-    ports:
-      - '80:80'
-      - '81:81'
-      - '443:443'
-    volumes:
-      - ./data:/data
-      - ./letsencrypt:/etc/letsencrypt
+docker_compose_generator_output_path: "/home/docker-user/"
 
 pip_install_packages:
   - name: docker

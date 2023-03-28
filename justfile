@@ -15,7 +15,7 @@ configure HOST *TAGS:
 
 ### run playbook
 deploy HOST *TAGS:
-  ansible-playbook -b playbooks/deploy.yaml --limit {{HOST}} {{TAGS}}
+  ansible-playbook -u docker-user -b playbooks/deploy.yaml --limit {{HOST}} {{TAGS}}
 
 
 ## repo stuff
