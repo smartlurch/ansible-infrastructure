@@ -6,6 +6,7 @@
       - role: grog.package
       - role: geerlingguy.docker
       - role: ironicbadger.bash_aliases
+      - role: geerlingguy.ntp
       - role: geerlingguy.pip
     tasks:
       - name: create docker-user
