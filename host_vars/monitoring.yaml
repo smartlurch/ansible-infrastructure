@@ -4,7 +4,7 @@ appdata_path: "/opt/appdata"
 containers:
   - service_name: traefik
     active: true
-    image: traefik:v2.6
+    image: traefik:v2.8
     command:
       - --entrypoints.web.address=:80
       - --entrypoints.web-secure.address=:443
