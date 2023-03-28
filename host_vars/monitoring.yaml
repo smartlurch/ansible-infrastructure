@@ -4,11 +4,11 @@ appdata_path: "/opt/appdata"
 containers:
   - service_name: librespeed
     active: true
-    image: 'lscr.io/linuxserver/librespeed:latest'
+    image: lscr.io/linuxserver/librespeed:latest
     restart: unless-stopped
     ports:
       - '80:80'
     volumes:
-      - "{{ appdata_path }}/librespeed/config":/config
+      - "{{ appdata_path }}/librespeed/config:/config"
 
 
