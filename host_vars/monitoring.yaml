@@ -2,13 +2,37 @@
 
 appdata_path: "/opt/appdata"
 containers:
+  - service_name: traefik
+    active: true
+    image: traefik:v2.6
+    command:
+      - --entrypoints.web.address=:80
+      - --entrypoints.web-secure.address=:443
+      - --providers.docker=true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "{{ appdata_path}}/traefik/configuration/:/configuration/"
+
   - service_name: librespeed
     active: true
     image: lscr.io/linuxserver/librespeed:latest
     restart: unless-stopped
-    ports:
-      - '80:80'
     volumes:
       - "{{ appdata_path }}/librespeed/config:/config"
+    labels:
+      - "traefik.http.routers.librespeed.rule=Host(`librespeed.mk.lan)"
+      - "traefik.http.routers.librespeed.tls=true"
 
-
+  - service_name: smokeping
+    active: true
+    image: lscr.io/linuxserver/smokeping:latest
+    restart: unless-stopped
+    volumes:
+      - "{{ appdata_path }}/smokeping/config:/config"
+      - "{{ appdata_path }}/smokeping/data:/data"
+    labels:
+      - "traefik.http.routers.smokeping.rule=Host(`smokeping.mk.lan)"
+      - "traefik.http.routers.smokeping.tls=true"
