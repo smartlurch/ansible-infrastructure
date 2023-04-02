@@ -1,20 +1,4 @@
 ---
-  - hosts: monitoring2
-    gather_facts: no
-    tasks:
-      #      - name: create dest directory
-      # ansible.builtin.file:
-      #   path: "{{ appdata_path}}/traefik/configuration/"
-      #   state: directory
-      #   mode: '0777'
-      - name: copy treafik tls config
-        ansible.builtin.copy:
-          src: "tls.yaml"
-          dest: "{{ appdata_path }}/traefik/configuration/tls.yaml"
-          owner: docker-user
-          group: docker
-          mode: "0664"
-
   - hosts: servers 
     gather_facts: no
     roles:
