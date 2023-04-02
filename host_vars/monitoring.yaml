@@ -9,6 +9,8 @@ containers:
       - "--entrypoints.web-secure.address=:443"
       - "--api.insecure=true"
       - "--providers.docker=true"
+      - "--entrypoints.web.http.redirections.entrypoint.to=web-secure"
+      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
       - "--providers.docker.exposedbydefault=false"
     ports:
       - "8080:8080"
