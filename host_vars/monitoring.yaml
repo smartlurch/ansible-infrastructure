@@ -1,15 +1,17 @@
 ---
-
 appdata_path: "/opt/appdata"
 containers:
   - service_name: traefik
     active: true
-    image: traefik:v2.8
+    image: traefik:v2.9
     command:
-      - --entrypoints.web.address=:80
-      - --entrypoints.web-secure.address=:443
-      - --providers.docker=true
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.web-secure.address=:443"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
     ports:
+      - "8080:8080"
       - "80:80"
       - "443:443"
     volumes:
@@ -23,8 +25,9 @@ containers:
     volumes:
       - "{{ appdata_path }}/librespeed/config:/config"
     labels:
-      - "traefik.http.routers.librespeed.rule=Host(`librespeed.mk.lan)"
+      - "traefik.http.routers.librespeed.rule=Host(`librespeed.mk.lan`)"
       - "traefik.http.routers.librespeed.tls=true"
+      - "traefik.enable=true"
 
   - service_name: smokeping
     active: true
@@ -34,5 +37,7 @@ containers:
       - "{{ appdata_path }}/smokeping/config:/config"
       - "{{ appdata_path }}/smokeping/data:/data"
     labels:
-      - "traefik.http.routers.smokeping.rule=Host(`smokeping.mk.lan)"
+      - "traefik.http.routers.smokeping.rule=Host(`smokeping.mk.lan`)"
       - "traefik.http.routers.smokeping.tls=true"
+      - "traefik.enable=true"
+

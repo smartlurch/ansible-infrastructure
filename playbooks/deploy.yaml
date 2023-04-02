@@ -1,5 +1,5 @@
 ---
-  - hosts: monitoring
+  - hosts: monitoring2
     gather_facts: no
     tasks:
       #      - name: create dest directory
