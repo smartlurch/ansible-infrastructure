@@ -1,18 +1,4 @@
 ---
-  - hosts: servers 
-    gather_facts: no
-    roles:
-      - role: ironicbadger.bash_aliases
-      - role: ironicbadger.docker_compose_generator
-        tags: compose
-    tasks:
-      - name: start docker containers
-        tags: compose
-        community.docker.docker_compose:
-          state: present
-          pull: true
-          project_src: "/home/docker-user"
- 
   - hosts: plex
     become: true
     vars:
@@ -53,3 +39,16 @@
           opts: "{{ myopts }}"
           state: mounted
 
+  - hosts: servers 
+    gather_facts: no
+    roles:
+      - role: ironicbadger.bash_aliases
+      - role: ironicbadger.docker_compose_generator
+        tags: compose
+    tasks:
+      - name: start docker containers
+        tags: compose
+        community.docker.docker_compose:
+          state: present
+          pull: true
+          project_src: "/home/docker-user"
