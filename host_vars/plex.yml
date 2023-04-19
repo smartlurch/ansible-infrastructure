@@ -2,14 +2,22 @@
 
 appdata_path: /opt/appdata
 containers:
-  - service_name: nginx
+  - service_name: plex
     active: true
-    image: 'nginx:latest'
+    image: lscr.io/linuxserver/plex:latest
     restart: unless-stopped
     ports:
       - '80:80'
       - '443:443'
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Chicago
+      - VERSION=docker
+      - PLEX_CLAIM= #optional
     volumes:
-      - ./data:/data
-
+      - /path/to/library:/config
+      - /path/to/tvseries:/tv
+      - /path/to/movies:/movies
 
