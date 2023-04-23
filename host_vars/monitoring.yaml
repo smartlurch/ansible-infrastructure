@@ -55,3 +55,14 @@ containers:
       - "traefik.http.routers.freshrss.rule=Host(`freshrss.mk.lan`)"
       - "traefik.http.routers.freshrss.tls=true"
       - "traefik.enable=true"
+  - service_name: homepage
+    active: true
+    image: ghcr.io/benphelps/homepage:latest
+    restart: unless-stopped
+    volumes:
+      - "{{ appdata_path }}/homepage/config:/config"
+    labels:
+      - "traefik.http.routers.homepage.rule=Host(`homepage.mk.lan`)"
+      - "traefik.http.routers.homepage.tls=true"
+      - "traefik.enable=true"
+      - "traefik.http.services.homepage.loadbalancer.server.port=3000"
