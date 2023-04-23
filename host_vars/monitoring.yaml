@@ -43,3 +43,15 @@ containers:
       - "traefik.http.routers.smokeping.tls=true"
       - "traefik.enable=true"
 
+  - service_name: freshrss
+    active: true
+    image: lscr.io/linuxserver/freshrss:latest
+    restart: unless-stopped
+    environment:
+      - TZ={{ 'ntp_timezone' }}
+    volumes:
+      - "{{ appdata_path }}/freshrss/config:/config"
+    labels:
+      - "traefik.http.routers.freshrss.rule=Host(`freshrss.mk.lan`)"
+      - "traefik.http.routers.freshrss.tls=true"
+      - "traefik.enable=true"
